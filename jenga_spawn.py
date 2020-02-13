@@ -155,203 +155,226 @@ def main():
     # This orientation matches that of 'tuck_arms.py -u'
     roll1 = 3.14159265359
     pitch1 = 0
-    yaw1 = -3.14159265359
+    yaw1 = 0
+
     quat1 = tf.transformations.quaternion_from_euler(roll1, pitch1, yaw1)
+
+    # This orientation matches that of layers 1 and 3 in the jenga tower
+    brick_roll1 = 3.14159265359
+    brick_pitch1 = 0
+    brick_yaw1 = -1.57079632679
+
+    brick_quat1 = tf.transformations.quaternion_from_euler(brick_roll1, brick_pitch1, brick_yaw1)
 
     # rotate end-effector 90 degrees about z
     roll2 = 3.14159265359
     pitch2 = 0
     yaw2 = -1.57079632679
+
     quat2 = tf.transformations.quaternion_from_euler(roll2, pitch2, yaw2)
+
+
+    brick_roll2 = 3.14159265359
+    brick_pitch2 = 0
+    brick_yaw2 = 0
+
+    brick_quat2 = tf.transformations.quaternion_from_euler(brick_roll2, brick_pitch2, brick_yaw2)
+
+    # Brick Pose
+    brick_pose = Pose()
+    brick_pose.position.x = 0.589679836383
+    brick_pose.position.y = 0.3333
+    brick_pose.position.z = 0.817893 - off
 
     '''
     PLACING POSES
     '''
     # Place pose 1
-    place_pose1 = Pose()
-    place_pose1.position.x = 0.589679836383
-    place_pose1.position.y = 0.0
-    place_pose1.position.z = 0.183676720426 - off
-    place_pose1.orientation.x = quat1[0]
-    place_pose1.orientation.y = quat1[1]
-    place_pose1.orientation.z = quat1[2]
-    place_pose1.orientation.w = quat1[3]
+    brick_pose1 = Pose()
+    brick_pose1.position.x = 0.589679836383
+    brick_pose1.position.y = 0.0
+    brick_pose1.position.z = 0.183676720426 + off
+    brick_pose1.orientation.x = brick_quat1[0]
+    brick_pose1.orientation.y = brick_quat1[1]
+    brick_pose1.orientation.z = brick_quat1[2]
+    brick_pose1.orientation.w = brick_quat1[3]
 
     # Place pose 2 (x + 0.07)
-    place_pose2 = Pose()
-    place_pose2.position.x = 0.659679836383 - trim
-    place_pose2.position.y = 0.0
-    place_pose2.position.z = 0.183676720426 - off
-    place_pose2.orientation.x = quat1[0]
-    place_pose2.orientation.y = quat1[1]
-    place_pose2.orientation.z = quat1[2]
-    place_pose2.orientation.w = quat1[3]
+    brick_pose2 = Pose()
+    brick_pose2.position.x = 0.659679836383 - trim
+    brick_pose2.position.y = 0.0
+    brick_pose2.position.z = 0.183676720426 + off
+    brick_pose2.orientation.x = brick_quat1[0]
+    brick_pose2.orientation.y = brick_quat1[1]
+    brick_pose2.orientation.z = brick_quat1[2]
+    brick_pose2.orientation.w = brick_quat1[3]
 
     # Place pose 3
-    place_pose3 = Pose()
-    place_pose3.position.x = 0.729679836383 - 2*trim
-    place_pose3.position.y = 0.0
-    place_pose3.position.z = 0.183676720426 - off
-    place_pose3.orientation.x = quat1[0]
-    place_pose3.orientation.y = quat1[1]
-    place_pose3.orientation.z = quat1[2]
-    place_pose3.orientation.w = quat1[3]
+    brick_pose3 = Pose()
+    brick_pose3.position.x = 0.729679836383 - 2*trim
+    brick_pose3.position.y = 0.0
+    brick_pose3.position.z = 0.183676720426 + off
+    brick_pose3.orientation.x = brick_quat1[0]
+    brick_pose3.orientation.y = brick_quat1[1]
+    brick_pose3.orientation.z = brick_quat1[2]
+    brick_pose3.orientation.w = brick_quat1[3]
 
     # Place pose 4
-    place_pose4 = Pose()
-    place_pose4.position.x = 0.659679836383
-    place_pose4.position.y = -0.06
-    place_pose4.position.z = 0.27 - off
-    place_pose4.orientation.x = quat2[0]
-    place_pose4.orientation.y = quat2[1]
-    place_pose4.orientation.z = quat2[2]
-    place_pose4.orientation.w = quat2[3]
+    brick_pose4 = Pose()
+    brick_pose4.position.x = 0.659679836383
+    brick_pose4.position.y = -0.06
+    brick_pose4.position.z = 0.27 + off
+    brick_pose4.orientation.x = brick_quat2[0]
+    brick_pose4.orientation.y = brick_quat2[1]
+    brick_pose4.orientation.z = brick_quat2[2]
+    brick_pose4.orientation.w = brick_quat2[3]
 
     # Place pose 5 (y + 0.065)
-    place_pose5 = Pose()
-    place_pose5.position.x = 0.659679836383
-    place_pose5.position.y = 0.005 - trim
-    place_pose5.position.z = 0.27 - off
-    place_pose5.orientation.x = quat2[0]
-    place_pose5.orientation.y = quat2[1]
-    place_pose5.orientation.z = quat2[2]
-    place_pose5.orientation.w = quat2[3]
+    brick_pose5 = Pose()
+    brick_pose5.position.x = 0.659679836383
+    brick_pose5.position.y = 0.005 - trim
+    brick_pose5.position.z = 0.27 + off
+    brick_pose5.orientation.x = brick_quat2[0]
+    brick_pose5.orientation.y = brick_quat2[1]
+    brick_pose5.orientation.z = brick_quat2[2]
+    brick_pose5.orientation.w = brick_quat2[3]
 
     # Place pose 6
-    place_pose6 = Pose()
-    place_pose6.position.x = 0.659679836383
-    place_pose6.position.y = 0.07 - 2*trim
-    place_pose6.position.z = 0.27 - off
-    place_pose6.orientation.x = quat2[0]
-    place_pose6.orientation.y = quat2[1]
-    place_pose6.orientation.z = quat2[2]
-    place_pose6.orientation.w = quat2[3]
+    brick_pose6 = Pose()
+    brick_pose6.position.x = 0.659679836383
+    brick_pose6.position.y = 0.07 - 2*trim
+    brick_pose6.position.z = 0.27 + off
+    brick_pose6.orientation.x = brick_quat2[0]
+    brick_pose6.orientation.y = brick_quat2[1]
+    brick_pose6.orientation.z = brick_quat2[2]
+    brick_pose6.orientation.w = brick_quat2[3]
 
 
     # Place pose 7
-    place_pose7 = Pose()
-    place_pose7.position.x = 0.589679836383
-    place_pose7.position.y = 0.0
-    place_pose7.position.z = 0.357 - off
-    place_pose7.orientation.x = quat1[0]
-    place_pose7.orientation.y = quat1[1]
-    place_pose7.orientation.z = quat1[2]
-    place_pose7.orientation.w = quat1[3]
+    brick_pose7 = Pose()
+    brick_pose7.position.x = 0.589679836383
+    brick_pose7.position.y = 0.0
+    brick_pose7.position.z = 0.357 + off
+    brick_pose7.orientation.x = brick_quat1[0]
+    brick_pose7.orientation.y = brick_quat1[1]
+    brick_pose7.orientation.z = brick_quat1[2]
+    brick_pose7.orientation.w = brick_quat1[3]
 
     # Place pose 8 (x + 0.07)
-    place_pose8 = Pose()
-    place_pose8.position.x = 0.659679836383 - trim
-    place_pose8.position.y = 0.0
-    place_pose8.position.z = 0.357 - off
-    place_pose8.orientation.x = quat1[0]
-    place_pose8.orientation.y = quat1[1]
-    place_pose8.orientation.z = quat1[2]
-    place_pose8.orientation.w = quat1[3]
+    brick_pose8 = Pose()
+    brick_pose8.position.x = 0.659679836383 - trim
+    brick_pose8.position.y = 0.0
+    brick_pose8.position.z = 0.357 + off
+    brick_pose8.orientation.x = brick_quat1[0]
+    brick_pose8.orientation.y = brick_quat1[1]
+    brick_pose8.orientation.z = brick_quat1[2]
+    brick_pose8.orientation.w = brick_quat1[3]
 
 
     # Place pose 9
-    place_pose9 = Pose()
-    place_pose9.position.x = 0.729679836383 - 2*trim
-    place_pose9.position.y = 0.0
-    place_pose9.position.z = 0.357 - off
-    place_pose9.orientation.x = quat1[0]
-    place_pose9.orientation.y = quat1[1]
-    place_pose9.orientation.z = quat1[2]
-    place_pose9.orientation.w = quat1[3]
+    brick_pose9 = Pose()
+    brick_pose9.position.x = 0.729679836383  - 2*trim
+    brick_pose9.position.y = 0.0
+    brick_pose9.position.z = 0.357 + off
+    brick_pose9.orientation.x = brick_quat1[0]
+    brick_pose9.orientation.y = brick_quat1[1]
+    brick_pose9.orientation.z = brick_quat1[2]
+    brick_pose9.orientation.w = brick_quat1[3]
 
     # Place pose 10
-    place_pose10 = Pose()
-    place_pose10.position.x = 0.659679836383
-    place_pose10.position.y = -0.06
-    place_pose10.position.z = 0.444 - off
-    place_pose10.orientation.x = quat2[0]
-    place_pose10.orientation.y = quat2[1]
-    place_pose10.orientation.z = quat2[2]
-    place_pose10.orientation.w = quat2[3]
+    brick_pose10 = Pose()
+    brick_pose10.position.x = 0.659679836383
+    brick_pose10.position.y = -0.06
+    brick_pose10.position.z = 0.444 + off
+    brick_pose10.orientation.x = brick_quat2[0]
+    brick_pose10.orientation.y = brick_quat2[1]
+    brick_pose10.orientation.z = brick_quat2[2]
+    brick_pose10.orientation.w = brick_quat2[3]
 
     # Place pose 11 (y + 0.065)
-    place_pose11 = Pose()
-    place_pose11.position.x = 0.659679836383
-    place_pose11.position.y = 0.005 - trim
-    place_pose11.position.z = 0.444 - off
-    place_pose11.orientation.x = quat2[0]
-    place_pose11.orientation.y = quat2[1]
-    place_pose11.orientation.z = quat2[2]
-    place_pose11.orientation.w = quat2[3]
+    brick_pose11 = Pose()
+    brick_pose11.position.x = 0.659679836383 
+    brick_pose11.position.y = 0.005 - trim
+    brick_pose11.position.z = 0.444 + off
+    brick_pose11.orientation.x = brick_quat2[0]
+    brick_pose11.orientation.y = brick_quat2[1]
+    brick_pose11.orientation.z = brick_quat2[2]
+    brick_pose11.orientation.w = brick_quat2[3]
 
     # Place pose 12
-    place_pose12 = Pose()
-    place_pose12.position.x = 0.659679836383
-    place_pose12.position.y = 0.07 - 2*trim
-    place_pose12.position.z = 0.444 - off
-    place_pose12.orientation.x = quat2[0]
-    place_pose12.orientation.y = quat2[1]
-    place_pose12.orientation.z = quat2[2]
-    place_pose12.orientation.w = quat2[3]
+    brick_pose12 = Pose()
+    brick_pose12.position.x = 0.659679836383
+    brick_pose12.position.y = 0.07 - 2*trim 
+    brick_pose12.position.z = 0.444 + off
+    brick_pose12.orientation.x = brick_quat2[0]
+    brick_pose12.orientation.y = brick_quat2[1]
+    brick_pose12.orientation.z = brick_quat2[2]
+    brick_pose12.orientation.w = brick_quat2[3]
 
 
     # Spawn table
     spawn_gazebo_table()
 
     # Spawn brick1
-    spawn_gazebo_brick(brick_pose=place_pose1, count=1)
+    spawn_gazebo_brick(brick_pose=brick_pose1, count=1)
 
     rospy.sleep(2.0)
 
     # Spawn brick2
-    spawn_gazebo_brick(brick_pose=place_pose2, count=2)
+    spawn_gazebo_brick(brick_pose=brick_pose2, count=2)
 
     rospy.sleep(2.0) 
 
     # Spawn brick3
-    spawn_gazebo_brick(brick_pose=place_pose3, count=3)
+    spawn_gazebo_brick(brick_pose=brick_pose3, count=3)
 
     rospy.sleep(2.0)
 
     # Spawn brick4
-    spawn_gazebo_brick(brick_pose=place_pose4, count=4)
+    spawn_gazebo_brick(brick_pose=brick_pose4, count=4)
 
     rospy.sleep(2.0)
 
     # Spawn brick5
-    spawn_gazebo_brick(brick_pose=place_pose5, count=5)
+    spawn_gazebo_brick(brick_pose=brick_pose5, count=5)
 
     rospy.sleep(2.0)
 
     # Spawn brick6
-    spawn_gazebo_brick(brick_pose=place_pose6, count=6)
+    spawn_gazebo_brick(brick_pose=brick_pose6, count=6)
 
     rospy.sleep(2.0) 
 
     # Spawn brick7
-    spawn_gazebo_brick(brick_pose=place_pose7, count=7)
+    spawn_gazebo_brick(brick_pose=brick_pose7, count=7)
 
     rospy.sleep(2.0)
 
     # Spawn brick8
-    spawn_gazebo_brick(brick_pose=place_pose8, count=8)
+    spawn_gazebo_brick(brick_pose=brick_pose8, count=8)
 
     rospy.sleep(2.0)
 
     # Spawn brick9
-    spawn_gazebo_brick(brick_pose=place_pose9, count=9)
+    spawn_gazebo_brick(brick_pose=brick_pose9, count=9)
 
     rospy.sleep(2.0)
 
     # Spawn brick10
-    spawn_gazebo_brick(brick_pose=place_pose10, count=10)
+    spawn_gazebo_brick(brick_pose=brick_pose10, count=10)
 
     rospy.sleep(2.0) 
 
     # Spawn brick11
-    spawn_gazebo_brick(brick_pose=place_pose11, count=11)
+    spawn_gazebo_brick(brick_pose=brick_pose11, count=11)
 
     rospy.sleep(2.0)
 
     # Spawn brick12
-    spawn_gazebo_brick(brick_pose=place_pose12, count=12)
+    spawn_gazebo_brick(brick_pose=brick_pose12, count=12)
 
-    rospy.sleep(2.0) 
+    rospy.sleep(2.0)
+
 
 
 
